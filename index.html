@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./src/images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/css/index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Mentor | Todo app</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <main class="relative">
+      <picture class="absolute -z-10 w-full">
+        <source
+          srcset="./src/images/bg-desktop-light.jpg"
+          media="(min-width: 992px)"
+          type="image/jpg"
+        />
+        <img src="./src/images/bg-mobile-light.jpg" alt="" />
+      </picture>
+      <div>
+        <div>
+          <h1>Todo</h1>
+          <img src="./src/images/icon-moon.svg" alt="Moon" />
+        </div>
+        <div>
+          <div></div>
+          <div></div>
+          <div>
+            <div>items left</div>
+            <div>All Active Completed</div>
+            <div>Clear Completed</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p>Drag and drop to reorder list</p>
+      </div>
+      <footer>
+        <p>
+          Challenge by
+          <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+            >Frontend Mentor</a
+          >. Coded by <a href="#">Your Name Here</a>.
+        </p>
+      </footer>
+    </main>
+    <script type="module" src="./src/ts/main.ts"></script>
+  </body>
+</html>
