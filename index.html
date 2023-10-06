@@ -20,34 +20,59 @@
   </head>
   <body>
     <div id="app"></div>
-    <main class="relative">
+    <main class="relative font-josefin-sans">
       <picture class="absolute -z-10 w-full">
         <source
           srcset="./src/images/bg-desktop-light.jpg"
           media="(min-width: 992px)"
           type="image/jpg"
         />
-        <img src="./src/images/bg-mobile-light.jpg" alt="" />
+        <img class="w-full" src="./src/images/bg-mobile-light.jpg" alt="" />
       </picture>
-      <div>
-        <div>
-          <h1>Todo</h1>
-          <img src="./src/images/icon-moon.svg" alt="Moon" />
+      <div class="mx-auto w-[90%] py-12">
+        <div class="mb-8 flex items-center justify-between">
+          <h1 class="text-3xl font-bold uppercase tracking-widest text-white">
+            Todo
+          </h1>
+          <button aria-label="Change mode" type="button">
+            <img
+              class="object-contain"
+              src="./src/images/icon-moon.svg"
+              alt="Moon"
+            />
+          </button>
         </div>
-        <div>
+        <div class="flex items-center rounded-md bg-white px-4 py-2">
+          <span class="sr-only">New todo...</span>
+          <input
+            id="default-checkbox"
+            class="h-5 w-5 cursor-pointer select-none rounded-full border border-light-theme-very-light-grayish"
+            value=""
+            type="checkbox"
+          />
+          <input
+            class="ml-3 select-none border-none px-0 text-sm outline-none placeholder:text-light-theme-dark-grayish-blue focus:border-none focus:outline-none focus:ring-0"
+            type="text"
+            placeholder="Create a new todo..."
+          />
+        </div>
+        <div class="hidden">
           <div></div>
           <div></div>
-          <div>
-            <div>items left</div>
+          <button>
+            <img src="./src/images/icon-cross.svg" alt="Remove item" />
+          </button>
+          <div class="flex">
+            <div><span>5</span> items left</div>
             <div>All Active Completed</div>
             <div>Clear Completed</div>
           </div>
         </div>
       </div>
-      <div>
+      <div class="text-center">
         <p>Drag and drop to reorder list</p>
       </div>
-      <footer>
+      <footer class="hidden">
         <p>
           Challenge by
           <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
