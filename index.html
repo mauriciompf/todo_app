@@ -19,7 +19,6 @@
     <title>Frontend Mentor | Todo app</title>
   </head>
   <body class="bg-light-theme-very-light-gray">
-    <div id="app"></div>
     <main class="relative font-josefin-sans">
       <picture class="absolute -z-10 w-full">
         <source
@@ -45,7 +44,6 @@
         <div class="flex items-center rounded-md bg-white px-4 py-2">
           <span class="sr-only">Add a new todo</span>
           <input
-            id="default-checkbox"
             class="h-5 w-5 cursor-pointer select-none rounded-full border border-light-theme-very-light-grayish"
             value=""
             type="checkbox"
@@ -57,29 +55,7 @@
             placeholder="Create a new todo..."
           />
         </div>
-        <div id="new-todo" class="mt-3">
-          <div
-            class="flex items-center justify-between rounded-t-md border-b border-light-theme-dark-grayish-blue bg-white px-4 py-2 shadow-2xl"
-          >
-            <span class="sr-only">'...'</span>
-            <div class="flex items-center gap-3">
-              <input
-                id="default-checkbox"
-                class="h-5 w-5 cursor-pointer select-none rounded-full border border-light-theme-very-light-grayish"
-                value=""
-                type="checkbox"
-              />
-              <input
-                class="select-none border-none px-0 text-sm outline-none placeholder:text-light-theme-very-dark-grayish-blue focus:border-none focus:outline-none focus:ring-0"
-                id="add-todo"
-                type="text"
-                placeholder="Create a new todo..."
-              />
-            </div>
-            <button>
-              <img src="./src/images/icon-cross.svg" alt="Remove item" />
-            </button>
-          </div>
+        <div id="new-todo" class="mt-3 hidden">
           <div
             class="flex items-center justify-between rounded-b-sm bg-white p-4 text-sm text-light-theme-dark-grayish-blue shadow-2xl"
           >
