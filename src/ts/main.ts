@@ -1,3 +1,5 @@
+import filterTasks from "./filter-tasks";
+
 const addTodoInput = document.querySelector("#add-todo") as HTMLInputElement;
 const newTodoElement = document.querySelector("#new-todo") as HTMLElement;
 const todos = document.querySelector("#todos") as HTMLSpanElement;
@@ -5,8 +7,25 @@ const clearCompletedButton = document.querySelector(
   "#clear-completed-button",
 ) as HTMLButtonElement;
 
-function createTodoElement(todoText: string): HTMLElement {
+const filterAllButton = document.querySelector(
+  "#filter-all",
+) as HTMLButtonElement;
+const filterActiveButton = document.querySelector(
+  "#filter-active",
+) as HTMLButtonElement;
+const filterCompletedButton = document.querySelector(
+  "#filter-completed",
+) as HTMLButtonElement;
+
+let totalTodos = 0;
+let completedTodos = 0;
+
+export default function createTodoElement(
+  todoText: string,
+  completed: boolean = false,
+): HTMLElement {
   const todoControl = document.createElement("div");
+  todoControl.setAttribute("id", "todo-control");
   todoControl.classList.add(
     "flex",
     "items-center",
@@ -41,11 +60,17 @@ function createTodoElement(todoText: string): HTMLElement {
   checkBoxInput.addEventListener("change", () => {
     if (checkBoxInput.checked) {
       newTodoInput.classList.add("line-through");
-      todos.textContent = String(Number(todos.textContent) - 1);
+      completedTodos++;
     } else {
       newTodoInput.classList.remove("line-through");
-      todos.textContent = String(Number(todos.textContent) + 1);
+      completedTodos--;
     }
+
+    if (completedTodos < 0) {
+      completedTodos = 0;
+    }
+
+    updateTodosCount();
   });
 
   const newTodoInput = document.createElement("input");
@@ -65,14 +90,25 @@ function createTodoElement(todoText: string): HTMLElement {
   const removeTodoButton = document.createElement("button");
   removeTodoButton.addEventListener("click", () => {
     todoControl.remove();
-    todos.textContent = String(Number(todos.textContent) - 1);
 
     if (newTodoElement.children.length - 2 === 0) {
       newTodoElement.classList.add("hidden");
     }
+
+    if (checkBoxInput.checked) {
+      completedTodos--;
+    }
+
+    totalTodos--;
+    if (totalTodos < 0) {
+      totalTodos = 0;
+    }
+
+    updateTodosCount();
   });
 
   const img = document.createElement("img");
+  img.classList.add("select-none");
   img.src = "./src/images/icon-cross.svg";
   img.alt = "Remove item";
   removeTodoButton.appendChild(img);
@@ -92,7 +128,17 @@ function createTodoElement(todoText: string): HTMLElement {
     }
   });
 
+  if (completed) {
+    checkBoxInput.checked = true;
+    newTodoElement.classList.add("line-through");
+    completedTodos++;
+  }
+
   return todoControl;
+}
+
+function updateTodosCount() {
+  todos.textContent = String(totalTodos - completedTodos);
 }
 
 function handleAddTodo(
@@ -101,25 +147,37 @@ function handleAddTodo(
 ): (e: KeyboardEvent) => void {
   return (e: KeyboardEvent) => {
     if (e.key == "Enter") {
-      const inputText = addTodoInput.value;
+      const inputText = addTodoInput.value.trim();
 
-      const todoControl = createTodoElement(inputText);
-      newTodoElement.insertBefore(todoControl, newTodoElement.firstChild);
+      if (inputText) {
+        const todoControl = createTodoElement(inputText);
+        newTodoElement.insertBefore(todoControl, newTodoElement.firstChild);
 
-      newTodoElement.classList.remove("hidden");
-      todos.textContent = String(newTodoElement.children.length - 2);
+        newTodoElement.classList.remove("hidden");
+        todos.textContent = String(newTodoElement.children.length - 2);
+        totalTodos++;
+        updateTodosCount();
 
-      addTodoInput.value = "";
-      e.preventDefault();
+        addTodoInput.value = "";
+        e.preventDefault();
+      }
     }
   };
 }
 
-function initTodoList() {
-  addTodoInput.addEventListener(
-    "keydown",
-    handleAddTodo(addTodoInput, newTodoElement),
-  );
-}
+addTodoInput.addEventListener(
+  "keydown",
+  handleAddTodo(addTodoInput, newTodoElement),
+);
 
-initTodoList();
+filterAllButton.addEventListener("click", () => {
+  filterTasks("all");
+});
+
+filterActiveButton.addEventListener("click", () => {
+  filterTasks("active");
+});
+
+filterCompletedButton.addEventListener("click", () => {
+  filterTasks("completed");
+});
