@@ -27,10 +27,10 @@ export default function createTodoElement(
   const todoControl = document.createElement("div");
   todoControl.setAttribute("id", "todo-control");
   todoControl.classList.add(
+    "group",
     "flex",
     "items-center",
     "justify-between",
-    "rounded-t-md",
     "border-b",
     "border-light-theme-dark-grayish-blue",
     "bg-white",
@@ -43,7 +43,7 @@ export default function createTodoElement(
   span.textContent = "add new todo";
 
   const inputControl = document.createElement("div");
-  inputControl.classList.add("flex", "items-center", "gap-3");
+  inputControl.classList.add("flex", "items-center", "gap-3", "w-full");
 
   const checkBoxInput = document.createElement("input");
   checkBoxInput.classList.add(
@@ -59,10 +59,10 @@ export default function createTodoElement(
   checkBoxInput.type = "checkbox";
   checkBoxInput.addEventListener("change", () => {
     if (checkBoxInput.checked) {
-      newTodoInput.classList.add("line-through");
+      newTodoInput.classList.add("line-through", "text-gray-300");
       completedTodos++;
     } else {
-      newTodoInput.classList.remove("line-through");
+      newTodoInput.classList.remove("line-through", "text-gray-300");
       completedTodos--;
     }
 
@@ -75,6 +75,8 @@ export default function createTodoElement(
 
   const newTodoInput = document.createElement("input");
   newTodoInput.classList.add(
+    "cursor-pointer",
+    "w-full",
     "select-none",
     "border-none",
     "px-0",
@@ -88,6 +90,11 @@ export default function createTodoElement(
   newTodoInput.value = todoText;
 
   const removeTodoButton = document.createElement("button");
+  removeTodoButton.classList.add(
+    "hidden",
+    "group-hover:block",
+    "group-focus:block",
+  );
   removeTodoButton.addEventListener("click", () => {
     todoControl.remove();
 
@@ -130,7 +137,6 @@ export default function createTodoElement(
 
   if (completed) {
     checkBoxInput.checked = true;
-    newTodoElement.classList.add("line-through");
     completedTodos++;
   }
 
@@ -171,13 +177,13 @@ addTodoInput.addEventListener(
 );
 
 filterAllButton.addEventListener("click", () => {
-  filterTasks("all");
+  filterTasks("all", filterAllButton);
 });
 
 filterActiveButton.addEventListener("click", () => {
-  filterTasks("active");
+  filterTasks("active", filterActiveButton);
 });
 
 filterCompletedButton.addEventListener("click", () => {
-  filterTasks("completed");
+  filterTasks("completed", filterCompletedButton);
 });
