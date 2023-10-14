@@ -1,4 +1,5 @@
 import filterTasks from "./filter-tasks";
+import toggleThemeMode from "./toggle-themeMode";
 
 const addTodoInput = document.querySelector("#add-todo") as HTMLInputElement;
 const newTodoElement = document.querySelector("#new-todo") as HTMLElement;
@@ -144,6 +145,7 @@ export default function createTodoElement(
 }
 
 function updateTodosCount() {
+  // @ts-ignore
   todos.textContent = String(totalTodos - completedTodos);
 }
 
@@ -153,6 +155,7 @@ function handleAddTodo(
 ): (e: KeyboardEvent) => void {
   return (e: KeyboardEvent) => {
     if (e.key == "Enter") {
+      // @ts-ignore
       const inputText = addTodoInput.value.trim();
 
       if (inputText) {
@@ -160,6 +163,7 @@ function handleAddTodo(
         newTodoElement.insertBefore(todoControl, newTodoElement.firstChild);
 
         newTodoElement.classList.remove("hidden");
+        // @ts-ignore
         todos.textContent = String(newTodoElement.children.length - 2);
         totalTodos++;
         updateTodosCount();
@@ -187,3 +191,8 @@ filterActiveButton.addEventListener("click", () => {
 filterCompletedButton.addEventListener("click", () => {
   filterTasks("completed", filterCompletedButton);
 });
+
+const toggleButton = document.querySelector(
+  "#toggle-mode",
+) as HTMLButtonElement;
+toggleButton.addEventListener("click", toggleThemeMode);
