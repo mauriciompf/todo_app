@@ -18,7 +18,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frontend Mentor | Todo app</title>
   </head>
-  <body class="bg-light-theme-very-light-gray">
+  <body
+    id="theme"
+    class="bg-light-theme-very-light-gray dark:bg-dark-theme-very-dark-blue"
+  >
     <main class="relative font-josefin-sans">
       <picture class="absolute -z-10 w-full">
         <source
@@ -33,7 +36,7 @@
           <h1 class="text-3xl font-bold uppercase tracking-widest text-white">
             Todo
           </h1>
-          <button aria-label="Change mode" type="button">
+          <button id="toggle-mode" aria-label="Toggle mode" type="button">
             <img
               class="object-contain"
               src="./src/images/icon-moon.svg"
