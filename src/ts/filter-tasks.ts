@@ -22,10 +22,20 @@ export default function filterTasks(
   filterButtons.forEach((btn) => {
     if (btn === filterButton) {
       btn.classList.add("text-blue-500");
-      btn.classList.remove("hover:text-gray-600", "focus:text-gray-600");
+      btn.classList.remove(
+        "hover:text-gray-600",
+        "focus:text-gray-600",
+        "dark:hover:text-dark-theme-light-grayish-blue-hover",
+        "dark:focus:text-dark-theme-light-grayish-blue-hover",
+      );
     } else {
       btn.classList.remove("text-blue-500");
-      btn.classList.add("hover:text-gray-600", "focus:text-gray-600");
+      btn.classList.add(
+        "hover:text-gray-600",
+        "focus:text-gray-600",
+        "dark:hover:text-dark-theme-light-grayish-blue-hover",
+        "dark:focus:text-dark-theme-light-grayish-blue-hover",
+      );
     }
   });
 }
