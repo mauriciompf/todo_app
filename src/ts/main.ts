@@ -1,22 +1,24 @@
+import getElement from "./getElement";
 import filterTasks from "./filter-tasks";
 import toggleThemeMode from "./toggle-themeMode";
+import {
+  todoControlClasses,
+  checkBoxInputClasses,
+  newTodoInputClasses,
+  newTodoInputCompletedClasses,
+} from "./elements-classes";
 
-const addTodoInput = document.querySelector("#add-todo") as HTMLInputElement;
-const newTodoElement = document.querySelector("#new-todo") as HTMLElement;
-const todos = document.querySelector("#todos") as HTMLSpanElement;
-const clearCompletedButton = document.querySelector(
+const addTodoInput = getElement<HTMLInputElement>("#add-todo");
+const newTodoElement = getElement<HTMLElement>("#new-todo");
+const todos = getElement<HTMLSpanElement>("#todos");
+const clearCompletedButton = getElement<HTMLButtonElement>(
   "#clear-completed-button",
-) as HTMLButtonElement;
+);
 
-const filterAllButton = document.querySelector(
-  "#filter-all",
-) as HTMLButtonElement;
-const filterActiveButton = document.querySelector(
-  "#filter-active",
-) as HTMLButtonElement;
-const filterCompletedButton = document.querySelector(
-  "#filter-completed",
-) as HTMLButtonElement;
+const filterAllButton = getElement<HTMLButtonElement>("#filter-all");
+const filterActiveButton = getElement<HTMLButtonElement>("#filter-active");
+const filterCompletedButton =
+  getElement<HTMLButtonElement>("#filter-completed");
 
 let totalTodos = 0;
 let completedTodos = 0;
@@ -27,19 +29,8 @@ export default function createTodoElement(
 ): HTMLElement {
   const todoControl = document.createElement("div");
   todoControl.setAttribute("id", "todo-control");
-  todoControl.classList.add(
-    "group",
-    "flex",
-    "items-center",
-    "justify-between",
-    "border-b",
-    "border-light-theme-dark-grayish-blue",
-    "bg-light-theme-very-light-gray",
-    "px-4",
-    "py-2",
-    "shadow-2xl",
-    "dark:bg-dark-theme-very-dark-desaturated-blue",
-  );
+  todoControl.classList.add(...todoControlClasses);
+
   const span = document.createElement("span");
   span.classList.add("sr-only");
   span.textContent = "add new todo";
@@ -48,34 +39,17 @@ export default function createTodoElement(
   inputControl.classList.add("flex", "items-center", "gap-3", "w-full");
 
   const checkBoxInput = document.createElement("input");
-  checkBoxInput.classList.add(
-    "h-5",
-    "w-5",
-    "cursor-pointer",
-    "select-none",
-    "rounded-full",
-    "border",
-    "bg-light-theme-very-light-gray",
-    "border-light-theme-very-light-grayish",
-    "dark:bg-dark-theme-very-dark-desaturated-blue",
-    "dark:border-dark-theme-very-dark-grayish-blue",
-  );
+  checkBoxInput.classList.add(...checkBoxInputClasses);
   checkBoxInput.value = "";
+  checkBoxInput.ariaLabel = "Check Task";
   checkBoxInput.type = "checkbox";
+
   checkBoxInput.addEventListener("change", () => {
     if (checkBoxInput.checked) {
-      newTodoInput.classList.add(
-        "line-through",
-        "text-light-theme-dark-grayish-blue",
-        "dark:text-dark-theme-dark-grayish-blue",
-      );
+      newTodoInput.classList.add(...newTodoInputCompletedClasses);
       completedTodos++;
     } else {
-      newTodoInput.classList.remove(
-        "line-through",
-        "text-light-theme-dark-grayish-blue",
-        "dark:text-dark-theme-dark-grayish-blue",
-      );
+      newTodoInput.classList.remove(...newTodoInputCompletedClasses);
       completedTodos--;
     }
 
@@ -87,23 +61,8 @@ export default function createTodoElement(
   });
 
   const newTodoInput = document.createElement("input");
-  newTodoInput.classList.add(
-    "cursor-pointer",
-    "w-full",
-    "select-none",
-    "border-none",
-    "px-0",
-    "text-sm",
-    "bg-light-theme-very-light-gray",
-    "outline-none",
-    "placeholder:text-light-theme-very-dark-grayish-blue",
-    "focus:border-none",
-    "focus:outline-none",
-    "focus:ring-0",
-    "dark:bg-dark-theme-very-dark-desaturated-blue",
-    "dark:text-dark-theme-light-grayish-blue-hover",
-    "dark:caret-white",
-  );
+  newTodoInput.classList.add(...newTodoInputClasses);
+  newTodoInput.ariaLabel = "Task input";
   newTodoInput.value = todoText;
 
   const removeTodoButton = document.createElement("button");
