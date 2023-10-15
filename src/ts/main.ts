@@ -34,10 +34,11 @@ export default function createTodoElement(
     "justify-between",
     "border-b",
     "border-light-theme-dark-grayish-blue",
-    "bg-white",
+    "bg-light-theme-very-light-gray",
     "px-4",
     "py-2",
     "shadow-2xl",
+    "dark:bg-dark-theme-very-dark-desaturated-blue",
   );
   const span = document.createElement("span");
   span.classList.add("sr-only");
@@ -54,16 +55,27 @@ export default function createTodoElement(
     "select-none",
     "rounded-full",
     "border",
+    "bg-light-theme-very-light-gray",
     "border-light-theme-very-light-grayish",
+    "dark:bg-dark-theme-very-dark-desaturated-blue",
+    "dark:border-dark-theme-very-dark-grayish-blue",
   );
   checkBoxInput.value = "";
   checkBoxInput.type = "checkbox";
   checkBoxInput.addEventListener("change", () => {
     if (checkBoxInput.checked) {
-      newTodoInput.classList.add("line-through", "text-gray-300");
+      newTodoInput.classList.add(
+        "line-through",
+        "text-light-theme-dark-grayish-blue",
+        "dark:text-dark-theme-dark-grayish-blue",
+      );
       completedTodos++;
     } else {
-      newTodoInput.classList.remove("line-through", "text-gray-300");
+      newTodoInput.classList.remove(
+        "line-through",
+        "text-light-theme-dark-grayish-blue",
+        "dark:text-dark-theme-dark-grayish-blue",
+      );
       completedTodos--;
     }
 
@@ -82,11 +94,15 @@ export default function createTodoElement(
     "border-none",
     "px-0",
     "text-sm",
+    "bg-light-theme-very-light-gray",
     "outline-none",
     "placeholder:text-light-theme-very-dark-grayish-blue",
     "focus:border-none",
     "focus:outline-none",
     "focus:ring-0",
+    "dark:bg-dark-theme-very-dark-desaturated-blue",
+    "dark:text-dark-theme-light-grayish-blue-hover",
+    "dark:caret-white",
   );
   newTodoInput.value = todoText;
 
