@@ -48,3 +48,10 @@ export const newTodoInputCompletedClasses = [
   "text-light-theme-dark-grayish-blue",
   "dark:text-dark-theme-dark-grayish-blue",
 ];
+
+export const filterTasksClasses = [
+  "hover:text-gray-600",
+  "focus:text-gray-600",
+  "dark:hover:text-dark-theme-light-grayish-blue-hover",
+  "dark:focus:text-dark-theme-light-grayish-blue-hover",
+];
