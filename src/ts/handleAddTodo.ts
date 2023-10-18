@@ -1,4 +1,4 @@
-import createTodoElement from "./createElement";
+import createTodoElement from "./createTodoElement";
 import updateTodosCount from "./updateTodosCount";
 
 export default function handleAddTodo(
@@ -20,7 +20,8 @@ export default function handleAddTodo(
         // @ts-ignore
         todos.textContent = String(newTodoElement.children.length - 2);
         totalTodos++;
-        updateTodosCount();
+        console.log(totalTodos);
+        updateTodosCount(todos);
 
         addTodoInput.value = "";
         e.preventDefault();
