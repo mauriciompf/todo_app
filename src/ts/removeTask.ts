@@ -1,4 +1,5 @@
 import updateTodosCount from "./updateTodosCount";
+import { todos } from "./main";
 
 export default function removeTask(
   todoControl: HTMLElement,
@@ -23,5 +24,5 @@ export default function removeTask(
     totalTodos = 0;
   }
 
-  updateTodosCount();
+  updateTodosCount(todos);
 }
