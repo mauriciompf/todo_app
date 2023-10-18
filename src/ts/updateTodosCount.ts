@@ -1,6 +1,6 @@
-import { totalTodos, completedTodos } from "./createElement";
+import { totalTodos, completedTodos } from "./createTodoElement";
 
-export default function updateTodosCount() {
+export default function updateTodosCount(todos: HTMLElement) {
   // @ts-ignore
   todos.textContent = String(totalTodos - completedTodos);
 }
