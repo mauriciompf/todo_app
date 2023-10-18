@@ -5,6 +5,7 @@ export default function updateTodoStatus(
   checkBoxInput: HTMLInputElement,
   newTodoInput: HTMLInputElement,
   completedTodos: number,
+  todos: HTMLElement,
 ) {
   if (checkBoxInput.checked) {
     newTodoInput.classList.add(...newTodoInputCompletedClasses);
@@ -18,5 +19,5 @@ export default function updateTodoStatus(
     completedTodos = 0;
   }
 
-  updateTodosCount();
+  updateTodosCount(todos);
 }
